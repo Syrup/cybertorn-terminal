@@ -18,6 +18,7 @@ import { SkillsEducation } from "@/components/sections/SkillsEducation";
 import { EventsNotifications } from "@/components/sections/EventsNotifications";
 import { PersonalStats } from "@/components/sections/PersonalStats";
 import { TornGlobal } from "@/components/sections/TornGlobal";
+import { CombatWinLoss } from "@/components/sections/CombatWinLoss";
 import { RefreshCw } from "lucide-react";
 
 export default function Home() {
@@ -112,6 +113,12 @@ export default function Home() {
             <div id="education">
               <SkillsEducation />
             </div>
+            <div id="combat">
+              <CombatWinLoss />
+            </div>
+          </section>
+
+          <section className="grid grid-cols-1 gap-4">
             <TornGlobal />
           </section>
 

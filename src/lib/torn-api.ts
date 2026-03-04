@@ -78,9 +78,14 @@ class TornApiClient {
     }
   }
 
-  private async fetchV2<T = Record<string, unknown>>(path: string): Promise<TornApiResponse<T>> {
+  private async fetchV2<T = Record<string, unknown>>(path: string, params?: Record<string, string>): Promise<TornApiResponse<T>> {
     await this.throttle();
     const searchParams = new URLSearchParams({ key: this.apiKey });
+    if (params) {
+      for (const [k, v] of Object.entries(params)) {
+        searchParams.set(k, v);
+      }
+    }
     const url = `${V2_BASE_URL}${path}?${searchParams.toString()}`;
 
     try {
@@ -206,6 +211,10 @@ class TornApiClient {
       section: "user",
       selections: ["personalstats"],
     });
+  }
+
+  async getUserPersonalStatsV2() {
+    return this.fetchV2(`/user/personalstats`, { cat: "attacking" });
   }
 
   async getUserMessages() {
