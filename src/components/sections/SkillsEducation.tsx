@@ -6,6 +6,7 @@ import { GraduationCap } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { StatBlock } from "@/components/ui/StatBlock";
+import dayjs from "dayjs";
 
 interface WorkStats {
   manual_labor: number;
@@ -78,6 +79,11 @@ export function SkillsEducation() {
     return parts.join(" ");
   };
 
+  /** Estimated completion time with day name in European format */
+  const formatEstimate = (remainingSeconds: number) => {
+    return dayjs().add(remainingSeconds, "second").format("ddd, DD.MM.YYYY HH:mm");
+  };
+
   const timeLeft = secondsLeft(education_timeleft);
   // education_current might be 0 if none.
   
@@ -88,8 +94,13 @@ export function SkillsEducation() {
            <div className="bg-muted/30 p-3 border border-border">
              <div className="text-xs text-muted-foreground font-mono uppercase mb-1">Current Course</div>
              <div className="font-bold text-sm mb-2">{education_current}</div> {/* Usually returns ID or Name? Usually ID, need lookup or it returns name if resolved. Actually returns ID usually. Let's assume ID for now. */}
-            <div className="text-xs font-mono tabular-nums text-muted-foreground">
-              Time Left: {formatDuration(timeLeft)}
+            <div className="text-xs font-mono tabular-nums text-muted-foreground flex items-center gap-2 flex-wrap">
+              <span>Time Left: {formatDuration(timeLeft)}</span>
+              {timeLeft > 0 && (
+                <span className="text-[10px] opacity-70">
+                  (est. {formatEstimate(timeLeft)})
+                </span>
+              )}
             </div>
            </div>
         ) : (
