@@ -4,18 +4,19 @@ This file contains crucial instructions, commands, and conventions for any auton
 
 ## 1. Build, Lint, and Test Commands
 
-*   **Development Server:** `npm run dev` (Runs Next.js dev server).
-*   **Production Build:** `npm run build` (Creates an optimized production build).
-*   **Start Production Server:** `npm run start` (Starts the built application).
-*   **Linting:** `npm run lint` (Runs ESLint).
-*   **Running All Tests:** `npm test` (Currently runs `node --import=tsx src/lib/equipment-utils.test.ts`).
-*   **Running a Single Test:** Since there is no dedicated test runner like Jest or Vitest specified in `package.json`, tests are executed directly using `tsx` (TypeScript Execute). To run a specific test file, use:
+*   **Runtime:** Bun is the primary runtime for this project. Fallback to Node.js/npm is supported if Bun is not available.
+*   **Development Server:** `bun run dev` (Runs Next.js dev server).
+*   **Production Build:** `bun run build` (Creates an optimized production build).
+*   **Start Production Server:** `bun run start` (Starts the built application).
+*   **Linting:** `bun run lint` (Runs ESLint).
+*   **Running All Tests:** `bun test` or `bun run test`.
+*   **Running a Single Test:** Execute directly using Bun:
     ```bash
-    node --import=tsx path/to/your/test.file.test.ts
+    bun path/to/your/test.file.test.ts
     ```
-*   **End-to-End Tests:** Playwright is installed (`@playwright/test`). To run E2E tests (assuming standard configuration):
+*   **End-to-End Tests:** Playwright is installed (`@playwright/test`). To run E2E tests:
     ```bash
-    npx playwright test
+    bunx playwright test
     ```
 
 ## 2. Technology Stack

@@ -1,3 +1,4 @@
+import { test, expect } from "bun:test";
 import {
   buildCatalogById,
   buildCatalogByName,
@@ -44,49 +45,31 @@ const byName = buildCatalogByName(catalog);
 
 const resolve = (item: EquipmentItemLike) => getCatalogDetails(item, byId, byName);
 
-const expectTruthy = (value: unknown, label: string) => {
-  if (!value) throw new Error(`${label} was falsy`);
-};
+test("getItemId", () => {
+  expect(getItemId({ id: 1 })).toBe(1);
+  expect(getItemId({})).toBeNull();
+});
 
-const expectEqual = (value: unknown, expected: unknown, label: string) => {
-  if (value !== expected) throw new Error(`${label} expected ${expected} but got ${value}`);
-};
-
-const testGetItemId = () => {
-  expectEqual(getItemId({ id: 1 }), 1, "id");
-  expectEqual(getItemId({}), null, "no id");
-};
-
-const testCatalogLookupById = () => {
+test("CatalogLookupById", () => {
   const details = resolve({ id: 1001 });
-  expectTruthy(details, "details by id");
-  expectEqual(details?.ammo?.id, 2001, "ammo id by id");
-};
+  expect(details).toBeTruthy();
+  expect(details?.ammo?.id).toBe(2001);
+});
 
-const testCatalogLookupByName = () => {
+test("CatalogLookupByName", () => {
   const details = resolve({ name: "XM8 Rifle" });
-  expectTruthy(details, "details by name");
-  expectEqual(details?.ammo?.id, 2001, "ammo id by name");
-};
+  expect(details).toBeTruthy();
+  expect(details?.ammo?.id).toBe(2001);
+});
 
-const testStatsFallback = () => {
+test("StatsFallback", () => {
   const details = resolve({ name: "XM8 Rifle" });
   const stats = getStats({ name: "XM8 Rifle" }, details);
-  expectEqual(stats?.damage, 65, "stats damage fallback");
-};
+  expect(stats?.damage).toBe(65);
+});
 
-const testAmmoFallback = () => {
+test("AmmoFallback", () => {
   const details = resolve({ name: "Crossbow" });
   const ammoMatch = getAmmoForItem({ name: "Crossbow" }, details);
-  expectEqual(ammoMatch?.name, "Crossbow Bolts", "ammo fallback");
-};
-
-const run = () => {
-  testGetItemId();
-  testCatalogLookupById();
-  testCatalogLookupByName();
-  testStatsFallback();
-  testAmmoFallback();
-};
-
-run();
+  expect(ammoMatch?.name).toBe("Crossbow Bolts");
+});

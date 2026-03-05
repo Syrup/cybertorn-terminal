@@ -27,16 +27,27 @@ A functional, high-density interface for the Torn City API. Built with Next.js a
 
 2. **Install dependencies**
    ```bash
-   npm install
+   bun install
+   # Fallback: npm install
    ```
 
 3. **Start the development server**
    ```bash
-   npm run dev
+   bun run dev
+   # Fallback: npm run dev
    ```
 
 4. **Configuration**
    Open [http://localhost:3000](http://localhost:3000) and enter your Torn API key.
+
+## Technical Specifications
+
+- **Runtime**: Bun (Primary) / Node.js (Fallback)
+- **Framework**: Next.js 15+ (App Router)
+- **Styling**: Tailwind CSS 4+ (Utility-first)
+- **Icons**: Lucide React
+- **Data Visualization**: Recharts
+- **Font**: Monospace-heavy for data legibility
 
 ## Development Standards
 
@@ -51,7 +62,7 @@ This is a Free and Open Source Software (FOSS) project. Bug reports and pull req
 
 1. Fork the repository.
 2. Create a branch for your changes.
-3. Ensure the code passes linting (`npm run lint`).
+3. Ensure the code passes linting (`bun run lint`).
 4. Submit a pull request with a concise description of the changes.
 
 ## License
