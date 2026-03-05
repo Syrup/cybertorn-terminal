@@ -38,7 +38,7 @@ A functional, high-density interface for the Torn City API. Built with Next.js a
    ```
 
 4. **Configuration**
-   Open [http://localhost:3000](http://localhost:3000) and enter your Torn API key.
+   Open [https://cybertorn-terminal.vercel.app](https://cybertorn-terminal.vercel.app) and enter your Torn API key. Local development available at `http://localhost:3000`.
 
 ## Technical Specifications
 
