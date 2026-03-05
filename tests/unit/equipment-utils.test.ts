@@ -8,7 +8,7 @@ import {
   getAmmoForItem,
   type EquipmentItemLike,
   type TornItemCatalogEntry,
-} from "./equipment-utils";
+} from "../../src/lib/equipment-utils";
 
 const ammo = {
   id: 2001,
