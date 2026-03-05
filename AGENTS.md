@@ -1,6 +1,6 @@
 # Agent Operational Guidelines
 
-This file contains crucial instructions, commands, and conventions for any autonomous coding agent operating in the `torn-dashboard` repository. Adhere strictly to these guidelines.
+This file contains crucial instructions, commands, and conventions for any autonomous coding agent operating in the `CyberTorn Terminal` repository. Adhere strictly to these guidelines.
 
 ## 1. Build, Lint, and Test Commands
 

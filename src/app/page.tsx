@@ -43,9 +43,9 @@ export default function Home() {
       <main className="flex-1 min-w-0 p-3 md:p-4 lg:p-6 space-y-4 overflow-x-hidden">
         <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-3 border-b border-border">
           <div className="flex-1 min-w-0">
-            <h1 className="text-lg font-bold tracking-tighter uppercase font-mono">COMMAND CENTER</h1>
+            <h1 className="text-lg font-bold tracking-tighter uppercase font-mono">CYBERTORN TERMINAL</h1>
             <div className="flex items-center gap-3 text-xs text-muted-foreground font-mono">
-              <span>TORN CITY API INTERFACE</span>
+              <span>COMMAND CENTER // ACCESS GRANTED</span>
               {lastUpdated && (
                 <span className="flex items-center gap-1">
                   <RefreshCw className="h-3 w-3" />

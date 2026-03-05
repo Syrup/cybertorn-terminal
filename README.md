@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CyberTorn Terminal
 
-## Getting Started
+A functional, high-density interface for the Torn City API. Built with Next.js and Tailwind CSS for players who prioritize data over aesthetics.
 
-First, run the development server:
+## Core Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Character Monitoring**: Real-time tracking of battle stats, energy, nerve, and life.
+- **Financial Ledger**: Detailed breakdown of cash, vault holdings, and total networth.
+- **Operational Status**: Monitoring for crimes, attacks, and faction activities.
+- **Asset Management**: View properties, stock holdings, and equipment.
+- **Zero-Server Storage**: API keys are stored in your browser's local storage. Data is fetched directly from the Torn API.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technical Specifications
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework**: Next.js 15+ (App Router)
+- **Styling**: Tailwind CSS 4+ (Utility-first)
+- **Icons**: Lucide React
+- **Data Visualization**: Recharts
+- **Font**: Monospace-heavy for data legibility
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Installation
 
-## Learn More
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/cybertorn-terminal.git
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. **Configuration**
+   Open [http://localhost:3000](http://localhost:3000) and enter your Torn API key.
 
-## Deploy on Vercel
+## Development Standards
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Strict Typing**: TypeScript is used throughout the project.
+- **Component Architecture**: Functional components with React hooks.
+- **Performance**: Minimal client-side JavaScript; heavy use of Server Components where possible.
+- **Accessibility**: Semantic HTML and keyboard-navigable interface.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Contributing
+
+This is a Free and Open Source Software (FOSS) project. Bug reports and pull requests should be submitted via GitHub.
+
+1. Fork the repository.
+2. Create a branch for your changes.
+3. Ensure the code passes linting (`npm run lint`).
+4. Submit a pull request with a concise description of the changes.
+
+## License
+
+MIT License. See `LICENSE` for the full text.
+
+---
+*Disclaimer: Not an official Torn City product.*

@@ -4,8 +4,8 @@ import { TornProvider } from "@/lib/torn-context";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "TORN DASHBOARD",
-  description: "Advanced Torn City API Interface",
+  title: "CyberTorn Terminal",
+  description: "Advanced Cyberpunk-styled Torn City API Interface",
 };
 
 export default function RootLayout({

@@ -58,10 +58,10 @@ export function Sidebar() {
         <div className="flex flex-col h-full">
           <div className="p-6 border-b border-border">
             <h1 className="text-xl font-bold tracking-tighter uppercase font-mono">
-              TORN<span className="text-primary">DASH</span>
+              CYBER<span className="text-primary">TORN</span>
             </h1>
             <div className="text-xs text-muted-foreground mt-1 font-mono">
-              TERMINAL V1.0
+              TERMINAL_CORE_V1.0
             </div>
           </div>
 
