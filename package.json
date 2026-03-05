@@ -10,6 +10,7 @@
     "test": "bun test"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.6.1",
     "dayjs": "^1.11.19",
     "lucide-react": "^0.575.0",
     "next": "16.1.6",
@@ -29,5 +30,10 @@
     "tailwindcss": "^4",
     "tsx": "^4.19.2",
     "typescript": "^5"
-  }
+  },
+  "trustedDependencies": [
+    "esbuild",
+    "sharp",
+    "unrs-resolver"
+  ]
 }
