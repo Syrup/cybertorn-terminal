@@ -57,9 +57,12 @@ export function Sidebar() {
       >
         <div className="flex flex-col h-full">
           <div className="p-6 border-b border-border">
-            <h1 className="text-xl font-bold tracking-tighter uppercase font-mono">
-              CYBER<span className="text-primary">TORN</span>
-            </h1>
+            <div className="flex items-center gap-3 mb-2">
+              <img src="/branding/icon.svg" alt="CyberTorn Icon" className="h-8 w-8 invert dark:invert-0" />
+              <h1 className="text-xl font-bold tracking-tighter uppercase font-mono">
+                CYBER<span className="text-primary">TORN</span>
+              </h1>
+            </div>
             <div className="text-xs text-muted-foreground mt-1 font-mono">
               TERMINAL_CORE_V1.0
             </div>
