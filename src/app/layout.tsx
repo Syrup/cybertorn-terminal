@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Analytics } from "@vercel/analytics/next"
 import { TornProvider } from "@/lib/torn-context";
+import { FeatureFlagProvider } from "@/lib/configcat-provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -23,10 +24,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <TornProvider>
-            {children}
-            <Analytics />
-          </TornProvider>
+          <FeatureFlagProvider>
+            <TornProvider>
+              {children}
+              <Analytics />
+            </TornProvider>
+          </FeatureFlagProvider>
         </ThemeProvider>
       </body>
     </html>

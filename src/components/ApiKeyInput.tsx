@@ -17,22 +17,22 @@ export function ApiKeyInput() {
   };
 
   return (
-    <div className="flex flex-wrap items-center gap-2">
-      <div className="relative">
+    <div className="flex items-center gap-2">
+      <div className="relative flex-1 min-w-0 sm:flex-none">
         <Key className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
         <input
           type="password"
           value={inputKey ?? apiKey}
           onChange={(e) => setInputKey(e.target.value)}
-          placeholder="ENTER API KEY"
-          className="h-9 w-48 bg-muted border border-border pl-9 pr-3 text-sm font-mono focus:outline-none focus:ring-1 focus:ring-ring placeholder:text-muted-foreground/50 uppercase"
+          placeholder="API KEY"
+          className="h-9 w-full sm:w-48 bg-muted border border-border pl-9 pr-3 text-sm font-mono focus:outline-none focus:ring-1 focus:ring-ring placeholder:text-muted-foreground/50 uppercase"
         />
       </div>
       <button
         type="button"
         onClick={handleSave}
         disabled={isLoading || !(inputKey ?? apiKey)}
-        className="h-9 px-3 bg-primary text-primary-foreground text-xs font-bold uppercase hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transition-colors"
+        className="h-9 px-3 bg-primary text-primary-foreground text-xs font-bold uppercase hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transition-colors flex-shrink-0"
       >
         {isLoading ? (
           <span className="animate-pulse">LOADING...</span>
@@ -43,9 +43,6 @@ export function ApiKeyInput() {
           </>
         )}
       </button>
-      <span className="text-[10px] text-muted-foreground font-mono uppercase w-full sm:w-auto sm:ml-1">
-        Key is stored locally on this device only.
-      </span>
     </div>
   );
 }

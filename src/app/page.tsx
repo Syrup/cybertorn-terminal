@@ -19,14 +19,19 @@ import { EventsNotifications } from "@/components/sections/EventsNotifications";
 import { PersonalStats } from "@/components/sections/PersonalStats";
 import { TornGlobal } from "@/components/sections/TornGlobal";
 import { CombatWinLoss } from "@/components/sections/CombatWinLoss";
-import { RefreshCw } from "lucide-react";
+import { RefreshCw, Github } from "lucide-react";
+import { MaintenanceOverlay } from "@/components/MaintenanceOverlay";
+import { AnnouncementBanner } from "@/components/AnnouncementBanner";
+import { UpdateChecker } from "@/components/UpdateChecker";
+import { useFlags } from "@/lib/feature-flags";
 
 export default function Home() {
   const { data, isLoading, error, loadDashboard, lastUpdated, apiKey } = useTorn();
   const refreshInterval = useRef<ReturnType<typeof setInterval> | null>(null);
+  const { showGithubButton, showThemeToggle, maintenanceMode } = useFlags();
 
   useEffect(() => {
-    if (!data || !apiKey) return;
+    if (!data || !apiKey || maintenanceMode) return;
 
     refreshInterval.current = setInterval(() => {
       loadDashboard();
@@ -35,99 +40,121 @@ export default function Home() {
     return () => {
       if (refreshInterval.current) clearInterval(refreshInterval.current);
     };
-  }, [data, apiKey, loadDashboard]);
+  }, [data, apiKey, loadDashboard, maintenanceMode]);
 
   return (
-    <div className="flex min-h-screen bg-background text-foreground">
-      <Sidebar />
-      <main className="flex-1 min-w-0 p-3 md:p-4 lg:p-6 space-y-4 overflow-x-hidden">
-        <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-3 border-b border-border">
-          <div className="flex-1 min-w-0">
-            <h1 className="text-lg font-bold tracking-tighter uppercase font-mono">CYBERTORN TERMINAL</h1>
-            <div className="flex items-center gap-3 text-xs text-muted-foreground font-mono">
-              <span>COMMAND CENTER // ACCESS GRANTED</span>
-              {lastUpdated && (
-                <span className="flex items-center gap-1">
-                  <RefreshCw className="h-3 w-3" />
-                  {lastUpdated.toLocaleTimeString()}
-                </span>
-              )}
-              {isLoading && <span className="animate-pulse text-yellow-500">UPDATING...</span>}
-            </div>
-          </div>
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <ApiKeyInput />
-            <ThemeToggle />
-          </div>
-        </header>
+    <div className="flex flex-col min-h-screen bg-background text-foreground">
+      <AnnouncementBanner />
+      <UpdateChecker />
+      
+      {maintenanceMode ? (
+        <MaintenanceOverlay />
+      ) : (
+        <div className="flex flex-1">
+          <Sidebar />
+          <main className="flex-1 min-w-0 p-3 md:p-4 lg:p-6 space-y-4 overflow-x-hidden">
+            <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-3 border-b border-border">
+              <div className="flex-1 min-w-0">
+                <h1 className="text-lg font-bold tracking-tighter uppercase font-mono">CYBERTORN TERMINAL</h1>
+                <div className="flex items-center gap-3 text-xs text-muted-foreground font-mono">
+                  <span>COMMAND CENTER // ACCESS GRANTED</span>
+                  {lastUpdated && (
+                    <span className="inline-flex items-center gap-2 text-sm">
+                      <RefreshCw className="h-4 w-4 flex-shrink-0" />
+                      {lastUpdated.toLocaleTimeString()}
+                    </span>
+                  )}
+                  {isLoading && <span className="animate-pulse text-yellow-500">UPDATING...</span>}
+                </div>
+              </div>
+              <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+                <ApiKeyInput />
+                <div className="flex items-center gap-2 ml-auto sm:ml-0">
+                  {showThemeToggle && <ThemeToggle />}
+                  {showGithubButton && (
+                    <a
+                      href="https://github.com/Syrup/torn-dashboard"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center h-9 w-9 border border-border bg-card text-muted-foreground hover:text-foreground hover:border-primary transition-colors"
+                      title="GitHub Repository"
+                    >
+                      <Github className="h-4 w-4" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </header>
 
-        {error && (
-          <div className="bg-destructive/10 border border-destructive text-destructive p-3 font-mono text-xs">
-            ERROR: {error}
-          </div>
-        )}
+            {error && (
+              <div className="bg-destructive/10 border border-destructive text-destructive p-3 font-mono text-xs">
+                ERROR: {error}
+              </div>
+            )}
 
-        {/* Main dashboard grid */}
-        <div className="space-y-4">
-          {/* Row 1: Profile + Battle Stats + Finance */}
-          <section id="profile" className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-            <ProfileOverview />
-            <div id="battle-stats">
-              <BattleStats />
-            </div>
-            <div id="money">
-              <MoneyNetworth />
-            </div>
-          </section>
+            {/* Main dashboard grid */}
+            <div className="space-y-4">
+              {/* Row 1: Profile + Battle Stats + Finance */}
+              <section id="profile" className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                <ProfileOverview />
+                <div id="battle-stats">
+                  <BattleStats />
+                </div>
+                <div id="money">
+                  <MoneyNetworth />
+                </div>
+              </section>
 
-          {/* Row 2: Cooldowns + Faction + Events */}
-          <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-            <div id="cooldowns">
-              <CooldownsTravel />
-            </div>
-            <div id="faction">
-              <FactionInfo />
-            </div>
-            <div id="events">
-              <EventsNotifications />
-            </div>
-          </section>
+              {/* Row 2: Cooldowns + Faction + Events */}
+              <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                <div id="cooldowns">
+                  <CooldownsTravel />
+                </div>
+                <div id="faction">
+                  <FactionInfo />
+                </div>
+                <div id="events">
+                  <EventsNotifications />
+                </div>
+              </section>
 
-          {/* Row 3: Attacks/Crimes + Market + Assets */}
-          <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-            <div id="crimes">
-              <AttacksCrimes />
-            </div>
-            <div id="market">
-              <MarketSection />
-            </div>
-            <div id="properties">
-              <StocksProperties />
-            </div>
-          </section>
+              {/* Row 3: Attacks/Crimes + Market + Assets */}
+              <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                <div id="crimes">
+                  <AttacksCrimes />
+                </div>
+                <div id="market">
+                  <MarketSection />
+                </div>
+                <div id="properties">
+                  <StocksProperties />
+                </div>
+              </section>
 
-          <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-            <div id="equipment">
-              <Equipment />
-            </div>
-            <div id="education">
-              <SkillsEducation />
-            </div>
-            <div id="combat">
-              <CombatWinLoss />
-            </div>
-          </section>
+              <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                <div id="equipment">
+                  <Equipment />
+                </div>
+                <div id="education">
+                  <SkillsEducation />
+                </div>
+                <div id="combat">
+                  <CombatWinLoss />
+                </div>
+              </section>
 
-          <section className="grid grid-cols-1 gap-4">
-            <TornGlobal />
-          </section>
+              <section className="grid grid-cols-1 gap-4">
+                <TornGlobal />
+              </section>
 
-          {/* Row 5: Personal Stats (full width) */}
-          <section id="personal-stats">
-            <PersonalStats />
-          </section>
+              {/* Row 5: Personal Stats (full width) */}
+              <section id="personal-stats">
+                <PersonalStats />
+              </section>
+            </div>
+          </main>
         </div>
-      </main>
+      )}
     </div>
   );
 }

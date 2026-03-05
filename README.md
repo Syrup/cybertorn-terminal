@@ -10,14 +10,6 @@ A functional, high-density interface for the Torn City API. Built with Next.js a
 - **Asset Management**: View properties, stock holdings, and equipment.
 - **Zero-Server Storage**: API keys are stored in your browser's local storage. Data is fetched directly from the Torn API.
 
-## Technical Specifications
-
-- **Framework**: Next.js 15+ (App Router)
-- **Styling**: Tailwind CSS 4+ (Utility-first)
-- **Icons**: Lucide React
-- **Data Visualization**: Recharts
-- **Font**: Monospace-heavy for data legibility
-
 ## Installation
 
 1. **Clone the repository**
@@ -38,18 +30,30 @@ A functional, high-density interface for the Torn City API. Built with Next.js a
    ```
 
 4. **Configuration**
-   Open [https://cybertorn-terminal.vercel.app](https://cybertorn-terminal.vercel.app) and enter your Torn API key. Local development available at `http://localhost:3000`.
+   - **Self-hosting**: Just open `http://localhost:3000` and enter your Torn API key. No environment variables required.
+   - **Production**: See the [Environment Variables](#configuration--environment-variables) section for optional feature flag configuration.
+
+## Configuration & Environment Variables
+
+If you are self-hosting, you can safely ignore all environment variables. The application is designed to work out of the box with safe defaults.
+
+### Feature Flags (Optional - ConfigCat)
+
+The project integrates with [ConfigCat](https://configcat.com/) for remote feature toggling and maintenance mode. To use it, create a `.env` file from the example:
+
+```bash
+cp .env.example .env
+```
+
+And populate the following keys:
+- `NEXT_PUBLIC_CONFIGCAT_SDK_KEY_PROD`: SDK Key for production environment.
+- `NEXT_PUBLIC_CONFIGCAT_SDK_KEY_TEST`: SDK Key for development/testing.
+
+**Note**: If these variables are not provided, the application will default to:
+- All features enabled (GitHub button, Theme toggle).
+- Maintenance mode disabled.
 
 ## Technical Specifications
-
-- **Runtime**: Bun (Primary) / Node.js (Fallback)
-- **Framework**: Next.js 15+ (App Router)
-- **Styling**: Tailwind CSS 4+ (Utility-first)
-- **Icons**: Lucide React
-- **Data Visualization**: Recharts
-- **Font**: Monospace-heavy for data legibility
-
-## Development Standards
 
 - **Strict Typing**: TypeScript is used throughout the project.
 - **Component Architecture**: Functional components with React hooks.

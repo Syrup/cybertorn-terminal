@@ -10,6 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import { createTornApi, type TornApiClient, type TornApiResponse } from "./torn-api";
+import { useFlags } from "./feature-flags";
 
 interface DashboardData {
   profile: TornApiResponse | null;
@@ -43,6 +44,7 @@ interface TornContextValue {
 const TornContext = createContext<TornContextValue | null>(null);
 
 export function TornProvider({ children }: { children: ReactNode }) {
+  const { maintenanceMode } = useFlags();
   const [apiKey, setApiKeyState] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<DashboardData | null>(null);
@@ -93,12 +95,12 @@ export function TornProvider({ children }: { children: ReactNode }) {
       ? window.localStorage.getItem("torn_api_key")
       : null;
 
-    if (storedKey) {
+    if (storedKey && !maintenanceMode) {
       setApiKeyState(storedKey);
       clientRef.current = createTornApi(storedKey);
       loadDashboard();
     }
-  }, [loadDashboard]);
+  }, [loadDashboard, maintenanceMode]);
 
   const fetchSection = useCallback(
     async (
