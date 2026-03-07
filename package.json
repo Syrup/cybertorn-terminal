@@ -1,6 +1,7 @@
 {
   "name": "cybertorn-terminal",
   "version": "0.1.0",
+  "description": "A sleek, easy-to-use dashboard to track your Torn City progress. Built by a player, for the players.",
   "private": true,
   "scripts": {
     "dev": "next dev",
