@@ -5,7 +5,6 @@ import { Card } from "@/components/ui/Card";
 import { ShoppingBag } from "lucide-react";
 import { useEffect, useState } from "react";
 
-
 interface PointListing {
   cost: number;
   quantity: number;
@@ -66,7 +65,6 @@ export function MarketSection() {
     );
   }
 
-  // Sort by cost ascending (cheapest first)
   const listings: PointListingEntry[] = Object.entries(pointsData)
     .map(([id, listing]) => ({ id, ...listing }))
     .sort((a, b) => a.cost - b.cost)

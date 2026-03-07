@@ -2,18 +2,40 @@
 
 import { useTheme } from "next-themes";
 import { Sun, Moon } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
+
+function subscribe() {
+
+  return () => {};
+}
+
+function getSnapshot() {
+  return true;
+}
+
+function getServerSnapshot() {
+  return false;
+}
 
 export function ThemeToggle() {
   const { theme, resolvedTheme, setTheme } = useTheme();
-  const [isMounted, setIsMounted] = useState(false);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+
+  if (!mounted) {
+    return (
+      <button
+        type="button"
+        className="p-2 border border-border bg-card hover:bg-accent hover:text-accent-foreground transition-colors"
+        aria-label="Toggle theme"
+      >
+        <div className="h-4 w-4" />
+      </button>
+    );
+  }
 
   const effectiveTheme = theme === "system" ? resolvedTheme : theme;
-  const isDark = isMounted && effectiveTheme === "dark";
+  const isDark = effectiveTheme === "dark";
 
   return (
     <button

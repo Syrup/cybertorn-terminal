@@ -20,6 +20,8 @@ export const FLAGS = {
   SHOW_ANNOUNCEMENT: "showAnnouncement",
   /** Announcement message content */
   ANNOUNCEMENT_MESSAGE: "announcementMessage",
+  /** Unix timestamp (in milliseconds) when maintenance started */
+  MAINTENANCE_START_TIME: "maintenanceStartTime",
 } as const;
 
 interface FeatureFlagsValue {
@@ -27,6 +29,7 @@ interface FeatureFlagsValue {
   showThemeToggle: boolean;
   maintenanceMode: boolean;
   maintenanceMessage: string;
+  maintenanceStartTime: number | null;
   showAnnouncement: boolean;
   announcementMessage: string;
   loading: boolean;
@@ -40,6 +43,7 @@ const DEFAULTS: FeatureFlagsValue = {
   showThemeToggle: true,
   maintenanceMode: false,
   maintenanceMessage: DEFAULT_MAINTENANCE_MSG,
+  maintenanceStartTime: null,
   showAnnouncement: false,
   announcementMessage: "",
   loading: false,
@@ -66,20 +70,27 @@ export function ConfigCatFlags({ children }: { children: ReactNode }) {
   const { value: rawMaintenanceMsg, loading: l4 } = useFeatureFlag(FLAGS.MAINTENANCE_MESSAGE, DEFAULT_MAINTENANCE_MSG as string);
   const { value: showAnnouncement, loading: l5 } = useFeatureFlag(FLAGS.SHOW_ANNOUNCEMENT, false);
   const { value: announcementMessage, loading: l6 } = useFeatureFlag(FLAGS.ANNOUNCEMENT_MESSAGE, "");
+  const { value: maintenanceStartTimeStr, loading: l7 } = useFeatureFlag(FLAGS.MAINTENANCE_START_TIME, "");
 
-  const loading = l1 || l2 || l3 || l4 || l5 || l6;
+  const loading = l1 || l2 || l3 || l4 || l5 || l6 || l7;
 
   const maintenanceMessage =
     rawMaintenanceMsg === "default" ? DEFAULT_MAINTENANCE_MSG : rawMaintenanceMsg;
 
+  const maintenanceStartTime =
+    maintenanceStartTimeStr && typeof maintenanceStartTimeStr === "string"
+      ? parseInt(maintenanceStartTimeStr, 10)
+      : null;
+
   return (
     <FeatureFlagsContext.Provider
       value={{
-        // While loading, use safe defaults
+
         showGithubButton: loading ? true : showGithubButton,
         showThemeToggle: loading ? true : showThemeToggle,
         maintenanceMode: loading ? false : maintenanceMode,
         maintenanceMessage: loading ? DEFAULT_MAINTENANCE_MSG : maintenanceMessage,
+        maintenanceStartTime: loading ? null : maintenanceStartTime,
         showAnnouncement: loading ? false : showAnnouncement,
         announcementMessage: loading ? "" : announcementMessage,
         loading,

@@ -38,7 +38,6 @@ export function FactionInfo() {
   const faction = data?.faction?.data as unknown as FactionData | null;
   const profileFaction = (data?.profile?.data as Record<string, unknown> | null)?.faction as ProfileFaction | undefined;
 
-  // Detect "no faction" from profile data: faction_id === 0 or missing
   const hasFaction = profileFaction ? (profileFaction.faction_id ?? 0) > 0 : undefined;
 
   if (hasFaction === false) {
@@ -61,7 +60,6 @@ export function FactionInfo() {
     );
   }
 
-  // Double-check: faction ID 0 means no faction even if API returned something
   if (faction.ID === 0 || !faction.name) {
     return (
       <Card title="Faction" icon={Users}>

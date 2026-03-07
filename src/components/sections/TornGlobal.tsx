@@ -51,7 +51,6 @@ export function TornGlobal() {
     );
   }
 
-  // tornStats might have a "stats" key or be flat depending on API response
   const statsObj = (tornStats as Record<string, unknown>).stats || tornStats;
   const entries = Object.entries(statsObj as Record<string, unknown>);
 

@@ -78,7 +78,6 @@ export function TornProvider({ children }: { children: ReactNode }) {
       setData(result);
       setLastUpdated(new Date());
 
-      // Check for auth errors
       const firstResult = result.profile;
       if (firstResult?.error) {
         setError(`API Error: ${firstResult.error.error}`);

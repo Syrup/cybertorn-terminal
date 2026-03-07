@@ -17,7 +17,6 @@ import {
   type TornItemDetails,
 } from "./equipment-utils";
 
-// --- Helpers ---
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null;
 
@@ -59,7 +58,6 @@ const parseCatalog = (payload: unknown): TornItemCatalogEntry[] => {
   return [];
 };
 
-// ===== EXACT API RESPONSE: /user?selections=equipment =====
 const userEquipmentResponse = {
   equipment: [
     {
@@ -95,7 +93,6 @@ const userEquipmentResponse = {
   ],
 };
 
-// ===== EXACT API RESPONSE: /torn/174,218/items =====
 const tornItemsResponse = {
   items: [
     {
@@ -132,7 +129,6 @@ const tornItemsResponse = {
   ],
 };
 
-// ===== EXACT API RESPONSE: /user?selections=ammo =====
 const userAmmoResponse = {
   ammo: [
     {
@@ -146,7 +142,6 @@ const userAmmoResponse = {
   ],
 };
 
-// ===== RUN TESTS =====
 let passed = 0;
 let failed = 0;
 
@@ -271,7 +266,7 @@ console.log("\n=== TEST 7: Ammo lookup simulation ===");
 
 console.log("\n=== TEST 8: getAmmoForItem — weapon without catalog (no weapon.ammo) ===");
 {
-  // The real API equipment items do NOT have weapon.ammo — that comes from catalog details
+
   const weapon = userEquipmentResponse.equipment[0] as unknown as EquipmentItemLike;
   console.log("  weapon.weapon:", (weapon as Record<string, unknown>).weapon);
   const ammoWithoutCatalog = getAmmoForItem(weapon, null);

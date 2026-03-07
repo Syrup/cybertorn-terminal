@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import {
   User,
@@ -57,8 +58,10 @@ export function Sidebar() {
       >
         <div className="flex flex-col h-full">
           <div className="p-6 border-b border-border">
+            <div className="flex items-center gap-3 mb-2 relative h-8 w-8 overflow-hidden shrink-0">
+              <Image src="/branding/icon.svg" alt="CyberTorn Icon" fill className="object-contain invert dark:invert-0" priority />
+            </div>
             <div className="flex items-center gap-3 mb-2">
-              <img src="/branding/icon.svg" alt="CyberTorn Icon" className="h-8 w-8 invert dark:invert-0" />
               <h1 className="text-xl font-bold tracking-tighter uppercase font-mono">
                 CYBER<span className="text-primary">TORN</span>
               </h1>

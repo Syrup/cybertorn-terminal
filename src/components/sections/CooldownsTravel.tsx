@@ -29,20 +29,14 @@ function CooldownItem({ label, seconds, color, formatDuration, secondsLeft }: Co
 }
 
 export function CooldownsTravel() {
-  const { data } = useTorn();
+  const { data, lastUpdated } = useTorn();
   const result = data?.cooldowns?.data as unknown as TornCooldownsResponse;
   const profile = data?.profile?.data as unknown as TornProfile | undefined;
   const [now, setNow] = useState(() => Date.now() / 1000);
-  const [dataTimestamp, setDataTimestamp] = useState<number | null>(null);
-
-  useEffect(() => {
-    if (result) {
-      setDataTimestamp(Date.now() / 1000);
-    }
-  }, [result]);
 
   const secondsLeft = (seconds: number) => {
-    const elapsed = dataTimestamp ? Math.floor(now - dataTimestamp) : 0;
+
+    const elapsed = lastUpdated ? Math.floor(now - (lastUpdated.getTime() / 1000)) : 0;
     return Math.max(0, seconds - Math.max(0, elapsed));
   };
 

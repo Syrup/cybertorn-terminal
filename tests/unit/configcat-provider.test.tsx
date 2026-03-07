@@ -2,7 +2,6 @@ import { test, expect, describe, mock } from "bun:test";
 import { render } from "@testing-library/react";
 import React, { type ReactNode } from "react";
 
-// --- Mock configcat-react ---
 mock.module("configcat-react", () => ({
   useFeatureFlag: (_key: string, defaultValue: unknown) => ({
     value: defaultValue,
@@ -33,8 +32,7 @@ function FlagReader() {
 
 describe("FeatureFlagProvider", () => {
   test("without SDK key, provides default values (all features on)", () => {
-    // NEXT_PUBLIC_CONFIGCAT_SDK_KEY is not set in test env,
-    // so provider should use DefaultFlags path
+
     const { getByTestId } = render(
       <FeatureFlagProvider>
         <FlagReader />
@@ -59,8 +57,7 @@ describe("FeatureFlagProvider", () => {
   });
 
   test("nested providers - inner overrides outer", () => {
-    // Simulates that wrapping in FeatureFlagProvider doesn't break
-    // when nested (shouldn't happen in practice but validates robustness)
+
     const { getByTestId } = render(
       <FeatureFlagProvider>
         <FeatureFlagProvider>

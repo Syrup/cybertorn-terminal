@@ -55,7 +55,7 @@ export function ProfileOverview() {
       remainingSec = Math.max(0, ticks * bar.interval - elapsed);
     }
     if (remainingSec === null || remainingSec <= 0) return null;
-    const fullAt = new Date(Date.now() + remainingSec * 1000);
+    const fullAt = new Date((now + remainingSec) * 1000);
     const clock = fullAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
     return `${formatEta(remainingSec)} (${clock})`;
   };

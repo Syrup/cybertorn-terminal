@@ -31,7 +31,7 @@ export function EventsNotifications() {
   }
 
   const events = eventsData.events ? Object.values(eventsData.events) as TornEvent[] : [];
-  // Sort by timestamp desc
+
   const recentEvents = events.sort((a, b) => b.timestamp - a.timestamp).slice(0, 10);
 
   const formatEventText = (value: string) =>

@@ -3,8 +3,6 @@ import { renderHook } from "@testing-library/react";
 import React from "react";
 import { useFlags, DefaultFlags, ConfigCatFlags } from "../../src/lib/feature-flags";
 
-// --- Mock configcat-react ---
-
 let mockFlagValues: Record<string, { value: unknown; loading: boolean }> = {};
 
 mock.module("configcat-react", () => ({
@@ -18,8 +16,6 @@ mock.module("configcat-react", () => ({
 beforeEach(() => {
   mockFlagValues = {};
 });
-
-// --- Tests ---
 
 describe("useFlags (no provider / context default)", () => {
   test("returns safe defaults when used without any provider", () => {
@@ -84,7 +80,6 @@ describe("ConfigCatFlags", () => {
 
     const { result } = renderHook(() => useFlags(), { wrapper });
 
-    // While loading, safe defaults should be used
     expect(result.current.showGithubButton).toBe(true);
     expect(result.current.showThemeToggle).toBe(true);
     expect(result.current.maintenanceMode).toBe(false);
@@ -167,7 +162,7 @@ describe("ConfigCatFlags", () => {
       showGithubButton: { value: false, loading: false },
       showThemeToggle: { value: false, loading: false },
       maintenanceMode: { value: true, loading: false },
-      maintenanceMessage: { value: "test", loading: true }, // only this one loading
+      maintenanceMessage: { value: "test", loading: true },
     };
 
     const wrapper = ({ children }: { children: React.ReactNode }) => (
@@ -176,7 +171,6 @@ describe("ConfigCatFlags", () => {
 
     const { result } = renderHook(() => useFlags(), { wrapper });
 
-    // Even if only one flag is loading, safe defaults apply
     expect(result.current.loading).toBe(true);
     expect(result.current.showGithubButton).toBe(true);
     expect(result.current.showThemeToggle).toBe(true);

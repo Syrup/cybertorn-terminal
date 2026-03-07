@@ -39,10 +39,8 @@ export function AttacksCrimes() {
     );
   }
 
-  // Attacks is object: { [id]: { ... } }
   const recentAttacks: TornAttack[] = attacks ? Object.values(attacks).sort((a, b) => b.timestamp_ended - a.timestamp_ended).slice(0, 5) : [];
 
-  // Crimes (criminalrecord) is object: { total: number, selling_illegal_products: number, ... }
   const totalCrimes = crimes?.total || 0;
   
   const resultColor = (result: string) => {

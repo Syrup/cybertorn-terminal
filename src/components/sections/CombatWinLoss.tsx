@@ -12,7 +12,6 @@ import {
   Tooltip,
 } from "recharts";
 
-// Interfaces for API V2 structure
 interface PersonalStatsAttackingExtended {
   attacks: {
     won: number;

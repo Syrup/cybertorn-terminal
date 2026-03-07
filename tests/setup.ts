@@ -1,15 +1,14 @@
 import { GlobalWindow } from "happy-dom";
 
 const window = new GlobalWindow();
-(global as any).window = window;
-(global as any).document = window.document;
-(global as any).navigator = window.navigator;
-(global as any).location = window.location;
-(global as any).HTMLAnchorElement = window.HTMLAnchorElement;
-(global as any).HTMLElement = window.HTMLElement;
-(global as any).Node = window.Node;
-(global as any).localStorage = window.localStorage;
-(global as any).sessionStorage = window.sessionStorage;
+(global as unknown as { window: unknown }).window = window;
+(global as unknown as { document: unknown }).document = window.document;
+(global as unknown as { navigator: unknown }).navigator = window.navigator;
+(global as unknown as { location: unknown }).location = window.location;
+(global as unknown as { HTMLAnchorElement: unknown }).HTMLAnchorElement = window.HTMLAnchorElement;
+(global as unknown as { HTMLElement: unknown }).HTMLElement = window.HTMLElement;
+(global as unknown as { Node: unknown }).Node = window.Node;
+(global as unknown as { localStorage: unknown }).localStorage = window.localStorage;
+(global as unknown as { sessionStorage: unknown }).sessionStorage = window.sessionStorage;
 
-// Set up a basic document structure
 window.document.body.innerHTML = '<div id="root"></div>';

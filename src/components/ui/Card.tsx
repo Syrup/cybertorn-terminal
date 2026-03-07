@@ -1,5 +1,5 @@
 import { LucideIcon } from "lucide-react";
-import { cn } from "@/lib/utils"; // I might need to create this util
+import { cn } from "@/lib/utils";
 
 interface CardProps {
   title: string;

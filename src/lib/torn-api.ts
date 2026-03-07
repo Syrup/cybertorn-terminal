@@ -23,7 +23,7 @@ interface FetchOptions {
 class TornApiClient {
   private apiKey: string;
   private lastRequestTime = 0;
-  private minInterval = 650; // ~90 req/min to stay safely under 100
+  private minInterval = 650;
 
   constructor(apiKey: string) {
     this.apiKey = apiKey;
@@ -109,7 +109,6 @@ class TornApiClient {
     return this.fetchV2<Record<string, unknown>>(`/torn/${ids.join(",")}/items`);
   }
 
-  // User section
   async getUserProfile() {
     return this.fetch({
       section: "user",
@@ -259,7 +258,6 @@ class TornApiClient {
     });
   }
 
-  // Faction section
   async getFaction() {
     return this.fetch({
       section: "faction",
@@ -302,7 +300,6 @@ class TornApiClient {
     });
   }
 
-  // Market section
   async getPointsMarket() {
     return this.fetch({
       section: "market",
@@ -310,7 +307,6 @@ class TornApiClient {
     });
   }
 
-  // Torn section
   async getTornStats() {
     return this.fetch({
       section: "torn",
@@ -367,7 +363,6 @@ class TornApiClient {
     });
   }
 
-  // Company section
   async getCompany() {
     return this.fetch({
       section: "company",
@@ -375,7 +370,6 @@ class TornApiClient {
     });
   }
 
-  // Key section
   async getKeyInfo() {
     return this.fetch({
       section: "key",
@@ -383,7 +377,6 @@ class TornApiClient {
     });
   }
 
-  // Bulk fetch for dashboard
   async getDashboardData() {
     const results = await Promise.allSettled([
       this.getUserProfile(),

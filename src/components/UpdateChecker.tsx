@@ -5,8 +5,19 @@ import { ArrowUpCircle, X } from "lucide-react";
 import packageJson from "../../package.json";
 
 const REPO_OWNER = "Syrup";
-const REPO_NAME = "torn-dashboard";
+const REPO_NAME = "cybertorn-terminal";
 const CURRENT_VERSION = packageJson.version;
+
+function isNewerVersion(current: string, latest: string) {
+  const c = current.split(".").map(Number);
+  const l = latest.split(".").map(Number);
+  
+  for (let i = 0; i < 3; i++) {
+    if ((l[i] || 0) > (c[i] || 0)) return true;
+    if ((l[i] || 0) < (c[i] || 0)) return false;
+  }
+  return false;
+}
 
 export function UpdateChecker() {
   const [latestVersion, setLatestVersion] = useState<string | null>(null);
@@ -15,7 +26,7 @@ export function UpdateChecker() {
   useEffect(() => {
     async function checkUpdate() {
       try {
-        // Fetch the latest release from GitHub
+
         const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases/latest`);
         if (!response.ok) return;
         
@@ -32,18 +43,6 @@ export function UpdateChecker() {
 
     checkUpdate();
   }, []);
-
-  // Simple semver comparison
-  function isNewerVersion(current: string, latest: string) {
-    const c = current.split(".").map(Number);
-    const l = latest.split(".").map(Number);
-    
-    for (let i = 0; i < 3; i++) {
-      if ((l[i] || 0) > (c[i] || 0)) return true;
-      if ((l[i] || 0) < (c[i] || 0)) return false;
-    }
-    return false;
-  }
 
   if (!latestVersion || isDismissed) return null;
 

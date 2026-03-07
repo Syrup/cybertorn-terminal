@@ -18,7 +18,6 @@ import {
   type TornItemCatalogEntry,
 } from "@/lib/equipment-utils";
 
-// V2 /user/equipment response types
 type EquipmentItem = {
   id: number;
   uid: number;
@@ -43,7 +42,6 @@ type EquipmentResponse = {
   clothing?: ClothingItem[];
 };
 
-// V2 /torn/{ids}/items detail types (for ammo lookup)
 type TornItemDetails = {
   base_stats?: {
     damage?: number | null;
@@ -53,7 +51,6 @@ type TornItemDetails = {
   ammo?: EquipmentAmmo | null;
 };
 
-// V2 /user/ammo response types
 type UserAmmoType = {
   name: string;
   quantity: number;
@@ -166,7 +163,7 @@ export function Equipment() {
           setCatalog(parseCatalog(res.data as unknown));
         }
       } catch {
-        // catalog fetch failure is non-fatal — stats still come from equipment items directly
+
       }
     };
     void loadCatalog();

@@ -4,7 +4,6 @@ import { useTorn } from "@/lib/torn-context";
 import { Card } from "@/components/ui/Card";
 import { ChevronDown, Globe } from "lucide-react";
 
-
 import { useState } from "react";
 
 interface PersonalStatsResponse {

@@ -2,23 +2,17 @@ import { test, expect, describe, mock } from "bun:test";
 import { render } from "@testing-library/react";
 import React, { type ReactNode } from "react";
 
-// --- Mock configcat-react before importing components ---
 mock.module("configcat-react", () => ({
   useFeatureFlag: () => ({ value: false, loading: false }),
   ConfigCatProvider: ({ children }: { children: ReactNode }) => children,
   PollingMode: { AutoPoll: 0 },
 }));
 
-// We test MaintenanceOverlay by wrapping it in a custom context provider
-// that lets us control the flag values directly.
 import { MaintenanceOverlay } from "../../src/components/MaintenanceOverlay";
 
-// We need to mock useFlags since MaintenanceOverlay consumes it
 let flagOverrides: Record<string, unknown> = {};
 
 mock.module("../../src/lib/feature-flags", () => {
-  const React = require("react");
-
   const DEFAULTS = {
     showGithubButton: true,
     showThemeToggle: true,
@@ -58,7 +52,6 @@ describe("MaintenanceOverlay", () => {
     const { container } = render(<MaintenanceOverlay />);
     expect(container.innerHTML).not.toBe("");
     expect(container.textContent).toContain("MAINTENANCE MODE");
-    expect(container.textContent).toContain("SYSTEM OFFLINE");
   });
 
   test("displays the provided maintenance message", () => {

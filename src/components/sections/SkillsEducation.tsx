@@ -85,8 +85,7 @@ export function SkillsEducation() {
   };
 
   const timeLeft = secondsLeft(education_timeleft);
-  // education_current might be 0 if none.
-  
+
   return (
     <Card title="Education & Work" icon={GraduationCap} className="h-full">
       <div className="p-4 space-y-4">

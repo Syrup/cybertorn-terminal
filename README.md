@@ -14,7 +14,7 @@ A functional, high-density interface for the Torn City API. Built with Next.js a
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/cybertorn-terminal.git
+   git clone https://github.com/Syrup/cybertorn-terminal.git
    ```
 
 2. **Install dependencies**
@@ -39,7 +39,9 @@ If you are self-hosting, you can safely ignore all environment variables. The ap
 
 ### Feature Flags (Optional - ConfigCat)
 
-The project integrates with [ConfigCat](https://configcat.com/) for remote feature toggling and maintenance mode. To use it, create a `.env` file from the example:
+The project integrates with [ConfigCat](https://configcat.com/) for remote feature toggling, global announcements, and maintenance mode. The application is designed to **work perfectly without it** (all features will be enabled and maintenance mode will be off by default).
+
+To use ConfigCat, create a `.env` file from the example:
 
 ```bash
 cp .env.example .env
@@ -49,9 +51,18 @@ And populate the following keys:
 - `NEXT_PUBLIC_CONFIGCAT_SDK_KEY_PROD`: SDK Key for production environment.
 - `NEXT_PUBLIC_CONFIGCAT_SDK_KEY_TEST`: SDK Key for development/testing.
 
-**Note**: If these variables are not provided, the application will default to:
-- All features enabled (GitHub button, Theme toggle).
-- Maintenance mode disabled.
+#### Required ConfigCat Flags
+If you decide to use ConfigCat, you must create the following feature flags in your ConfigCat dashboard with these exact keys and types:
+
+| Flag Key | Type | Default Behavior (Without ConfigCat) | Description |
+| :--- | :--- | :--- | :--- |
+| `showGithubButton` | **Boolean** | `true` | Shows or hides the GitHub repository button in the header. |
+| `showThemeToggle` | **Boolean** | `true` | Shows or hides the Dark/Light theme toggle button. |
+| `maintenanceMode` | **Boolean** | `false` | Enables a full-screen "System Offline" overlay, blocking access to the app and halting API polling. |
+| `maintenanceMessage` | **Text** | `"System is undergoing scheduled maintenance..."` | The message displayed when maintenance mode is active. |
+| `maintenanceStartTime` | **Text** | `null` | A Unix Timestamp (e.g., `1716383400000`) representing when maintenance started. Used to show a synchronized "X since maintenance" timer globally. |
+| `showAnnouncement` | **Boolean** | `false` | Shows a dismissible announcement banner at the top of the app. |
+| `announcementMessage` | **Text** | `""` (Empty) | The markdown-supported text to display in the announcement banner. |
 
 ## Technical Specifications
 
