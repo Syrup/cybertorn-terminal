@@ -92,3 +92,13 @@ This file contains crucial instructions, commands, and conventions for any auton
 *   **Test Execution:** If writing logic that should be tested, run the relevant test file using the command specified in section 1 to verify the changes.
 *   **No Unprompted Structural Changes:** Do not significantly alter the project structure or introduce new major dependencies without explicit user confirmation.
 *   **Mimic Existing Code:** When modifying existing files, carefully observe and match the surrounding coding style and patterns.
+
+## 5. Versioning Guidelines
+
+*   **Semantic Versioning:** Follow `MAJOR.MINOR.PATCH` format.
+*   **When to Bump:** 
+    *   Do NOT bump version for every commit.
+    *   Bump **PATCH** for bug fixes or minor refactors.
+    *   Bump **MINOR** for new features.
+    *   Bump **MAJOR** for breaking changes or complete redesigns.
+*   **Automation:** If a `package.json` exists, versioning should be handled there. This project uses `standard-version`. Run `bun run release` to automatically bump version, generate changelog, and create a git tag based on conventional commits.

@@ -1,6 +1,6 @@
 {
   "name": "cybertorn-terminal",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A sleek, easy-to-use dashboard to track your Torn City progress. Built by a player, for the players.",
   "private": true,
   "scripts": {
@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "bun test"
+    "test": "bun test",
+    "release": "standard-version"
   },
   "dependencies": {
     "@vercel/analytics": "^1.6.1",
@@ -34,6 +35,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "happy-dom": "^20.8.3",
+    "standard-version": "^9.5.0",
     "tailwindcss": "^4",
     "tsx": "^4.19.2",
     "typescript": "^5"

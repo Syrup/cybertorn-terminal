@@ -35,7 +35,7 @@ export default function Home() {
 
     refreshInterval.current = setInterval(() => {
       loadDashboard();
-    }, 15000);
+    }, 30000);
 
     return () => {
       if (refreshInterval.current) clearInterval(refreshInterval.current);

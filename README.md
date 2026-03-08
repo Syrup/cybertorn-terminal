@@ -75,10 +75,9 @@ If you decide to use ConfigCat, you must create the following feature flags in y
 
 This is a Free and Open Source Software (FOSS) project. Bug reports and pull requests should be submitted via GitHub.
 
-1. Fork the repository.
-2. Create a branch for your changes.
-3. Ensure the code passes linting (`bun run lint`).
-4. Submit a pull request with a concise description of the changes.
+**Important:** We use **Conventional Commits** to automate versioning and changelogs. Please ensure your commit messages follow the format `type: description` (e.g., `feat: add combat chart`).
+
+For detailed instructions, see our [Contributing Guide](./CONTRIBUTING.md).
 
 ## License
 
