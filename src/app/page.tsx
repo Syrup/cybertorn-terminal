@@ -18,7 +18,6 @@ import { SkillsEducation } from "@/components/sections/SkillsEducation";
 import { EventsNotifications } from "@/components/sections/EventsNotifications";
 import { PersonalStats } from "@/components/sections/PersonalStats";
 import { TornGlobal } from "@/components/sections/TornGlobal";
-import { CombatWinLoss } from "@/components/sections/CombatWinLoss";
 import { RefreshCw, Github } from "lucide-react";
 import { MaintenanceOverlay } from "@/components/MaintenanceOverlay";
 import { AnnouncementBanner } from "@/components/AnnouncementBanner";
@@ -94,60 +93,58 @@ export default function Home() {
 
             {/* Main dashboard grid */}
             <div className="space-y-4">
-              {/* Row 1: Profile + Battle Stats + Finance */}
-              <section id="profile" className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+              {/* Row 1: Essential Real-time Data (The "Right Now" section) */}
+              <section id="essential" className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                 <ProfileOverview />
-                <div id="battle-stats">
-                  <BattleStats />
-                </div>
-                <div id="money">
-                  <MoneyNetworth />
-                </div>
-              </section>
-
-              {/* Row 2: Cooldowns + Faction + Events */}
-              <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                 <div id="cooldowns">
                   <CooldownsTravel />
-                </div>
-                <div id="faction">
-                  <FactionInfo />
                 </div>
                 <div id="events">
                   <EventsNotifications />
                 </div>
               </section>
 
-              {/* Row 3: Attacks/Crimes + Market + Assets */}
-              <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                <div id="crimes">
-                  <AttacksCrimes />
+              {/* Row 2: Finance, Faction & Combat Readiness */}
+              <section id="status" className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                <div id="money">
+                  <MoneyNetworth />
                 </div>
-                <div id="market">
-                  <MarketSection />
+                <div id="faction">
+                  <FactionInfo />
                 </div>
-                <div id="properties">
-                  <StocksProperties />
+                <div id="battle-stats">
+                  <BattleStats />
                 </div>
               </section>
 
-              <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                <div id="equipment">
-                  <Equipment />
+              {/* Row 3: Progression & Performance */}
+              <section id="progression" className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                <div id="crimes">
+                  <AttacksCrimes />
                 </div>
                 <div id="education">
                   <SkillsEducation />
                 </div>
-                <div id="combat">
-                  <CombatWinLoss />
+              </section>
+
+              {/* Row 4: Assets & Economy */}
+              <section id="assets" className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                <div id="equipment">
+                  <Equipment />
+                </div>
+                <div id="properties">
+                  <StocksProperties />
+                </div>
+                <div id="market">
+                  <MarketSection />
                 </div>
               </section>
 
-              <section className="grid grid-cols-1 gap-4">
+              {/* Bottom: Global & Long-term Reference */}
+              <section id="global" className="grid grid-cols-1 gap-4">
                 <TornGlobal />
               </section>
 
-              {/* Row 5: Personal Stats (full width) */}
               <section id="personal-stats">
                 <PersonalStats />
               </section>

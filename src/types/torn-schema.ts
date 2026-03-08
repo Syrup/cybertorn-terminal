@@ -99,6 +99,11 @@ export interface TornMoney {
   cayman_bank: number;
   vault_amount: number;
   networth: number;
+  city_bank?: {
+    amount: number;
+    interest_rate: number;
+    until: number;
+  };
 }
 
 export interface TornCooldowns {
