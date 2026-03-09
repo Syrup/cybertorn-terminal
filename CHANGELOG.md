@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/Syrup/cybertorn-terminal/compare/v1.1.0...v1.1.1) (2026-03-09)
+
+
+### Bug Fixes
+
+* resolve education course ID to display name ([70bcd01](https://github.com/Syrup/cybertorn-terminal/commit/70bcd017cf07e76ad9ccd2ad8e3df2cbe3ced3be))
+
 ## 1.1.0 (2026-03-08)
 
 
