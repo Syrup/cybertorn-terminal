@@ -26,19 +26,43 @@ interface EducationData {
   weaponexp: Record<string, WeaponExp> | null;
 }
 
+interface EduMapping {
+  name: string;
+}
+
+interface TornEduResponse {
+  education: Record<string, EduMapping>;
+}
+
 export function SkillsEducation() {
   const { apiKey, fetchSection } = useTorn();
   const [eduData, setEduData] = useState<EducationData | null>(null);
+  const [eduNames, setEduNames] = useState<Record<string, EduMapping>>({});
+  const [namesLoading, setNamesLoading] = useState(() => !!apiKey);
   const [now, setNow] = useState(() => Date.now() / 1000);
   const [dataTimestamp, setDataTimestamp] = useState<number | null>(null);
 
   useEffect(() => {
-    if (!apiKey) return;
+    if (!apiKey) {
+      return;
+    }
+
     fetchSection((client) => client.getUserEducation()).then((res) => {
       if (res?.data) {
         setEduData(res.data as unknown as EducationData);
         setDataTimestamp(Date.now() / 1000);
       }
+    });
+
+    // Fetch education names mapping
+    fetchSection((client) => client.getTornEducation()).then((res) => {
+      if (res?.data) {
+        const data = res.data as unknown as TornEduResponse;
+        if (data.education) {
+          setEduNames(data.education);
+        }
+      }
+      setNamesLoading(false);
     });
   }, [apiKey, fetchSection]);
 
@@ -92,7 +116,13 @@ export function SkillsEducation() {
         {education_current !== 0 ? (
            <div className="bg-muted/30 p-3 border border-border">
              <div className="text-xs text-muted-foreground font-mono uppercase mb-1">Current Course</div>
-             <div className="font-bold text-sm mb-2">{education_current}</div> {/* Usually returns ID or Name? Usually ID, need lookup or it returns name if resolved. Actually returns ID usually. Let's assume ID for now. */}
+             <div className="font-bold text-sm mb-2">
+               {namesLoading ? (
+                 <span className="animate-pulse">LOADING COURSE NAME...</span>
+               ) : (
+                 eduNames[education_current]?.name || `Course #${education_current}`
+               )}
+             </div>
             <div className="text-xs font-mono tabular-nums text-muted-foreground flex items-center gap-2 flex-wrap">
               <span>Time Left: {formatDuration(timeLeft)}</span>
               {timeLeft > 0 && (
