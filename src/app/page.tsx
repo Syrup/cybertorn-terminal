@@ -13,6 +13,7 @@ import { Equipment } from "@/components/sections/Equipment";
 import { FactionInfo } from "@/components/sections/FactionInfo";
 import { AttacksCrimes } from "@/components/sections/AttacksCrimes";
 import { MarketSection } from "@/components/sections/MarketSection";
+import { ItemMarketSection } from "@/components/sections/ItemMarketSection";
 import { StocksProperties } from "@/components/sections/StocksProperties";
 import { SkillsEducation } from "@/components/sections/SkillsEducation";
 import { EventsNotifications } from "@/components/sections/EventsNotifications";
@@ -124,6 +125,9 @@ export default function Home() {
                 </div>
                 <div id="education">
                   <SkillsEducation />
+                </div>
+                <div id="market">
+                  <ItemMarketSection />
                 </div>
               </section>
 
