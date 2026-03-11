@@ -72,11 +72,10 @@ export function ItemMarketSection() {
 
   const listings: ItemListingEntry[] = Object.entries(itemData)
     .map(([id, listing]) => ({ id, ...listing }))
-    .filter(item => item.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()))
-    .sort((a, b) => a.market_value - b.market_value)
-    .slice(0, 10);
-
-    console.log(listings);
+    .filter(item => item.circulation > 0 && item.market_value > 0) // filters out invalid items (no market value / no circulation)
+    .filter(item => item.name.toLocaleLowerCase().includes(value.toLocaleLowerCase())) // filters items by search (search = cd -> shows [mix cd, cd player, etc.])
+    .sort((a, b) => a.market_value - b.market_value) // sorts by lowest market_value
+    .slice(0, 10); // lists up to 10
 
   return (
     <Card title="Items Market" icon={ShoppingBag} className="h-full flex flex-col">
@@ -101,8 +100,8 @@ export function ItemMarketSection() {
           {listings.map((listing) => (
             <tr key={listing.id} className="border-b border-border/50 last:border-0 hover:bg-muted/20">
               <td className="p-2 font-bold tabular-nums text-green-500">{listing.name}</td>
-              <td className="p-2 text-right tabular-nums">{listing.circulation}</td>
-              <td className="p-2 text-right tabular-nums text-muted-foreground">${listing.market_value}</td>
+              <td className="p-2 text-right tabular-nums">{listing.circulation.toLocaleString()}</td>
+              <td className="p-2 text-right tabular-nums text-muted-foreground">${listing.market_value.toLocaleString()}</td>
             </tr>
           ))}
           </tbody>
