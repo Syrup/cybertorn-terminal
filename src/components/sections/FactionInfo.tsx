@@ -16,7 +16,7 @@ interface FactionData {
   respect: number;
   age: number;
   capacity: number;
-  members: number;
+  members: number | Record<string, unknown>;
   best_chain: number;
   territory: Record<string, unknown>;
   chain: {
@@ -82,7 +82,7 @@ export function FactionInfo() {
 
         <div className="grid grid-cols-2 gap-2">
            <StatBlock label="Respect" value={faction.respect.toLocaleString()} />
-           <StatBlock label="Members" value={faction.members} />
+           <StatBlock label="Members" value={(faction.members && typeof faction.members === "object") ? Object.keys(faction.members).length : (faction.members || 0)} />
            <StatBlock label="Territory" value={Object.keys(faction.territory || {}).length} />
            <StatBlock label="Chain" value={chain?.current || 0} />
         </div>
