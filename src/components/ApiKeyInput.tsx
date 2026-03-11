@@ -24,6 +24,11 @@ export function ApiKeyInput() {
           type="password"
           value={inputKey ?? apiKey}
           onChange={(e) => setInputKey(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !isLoading && (inputKey ?? apiKey)) {
+              handleSave();
+            }
+          }}
           placeholder="API KEY"
           className="h-9 w-full sm:w-48 bg-muted border border-border pl-9 pr-3 text-sm font-mono focus:outline-none focus:ring-1 focus:ring-ring placeholder:text-muted-foreground/50 uppercase"
         />

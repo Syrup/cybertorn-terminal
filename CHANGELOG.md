@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/Syrup/cybertorn-terminal/compare/v1.1.1...v1.1.2) (2026-03-11)
+
+
+### Bug Fixes
+
+* resolve React error [#31](https://github.com/Syrup/cybertorn-terminal/issues/31) in FactionInfo and improve API input UX ([e475710](https://github.com/Syrup/cybertorn-terminal/commit/e47571036109ff227a696dc0120fb908bc3e55b0))
+
 ### [1.1.1](https://github.com/Syrup/cybertorn-terminal/compare/v1.1.0...v1.1.1) (2026-03-09)
 
 
