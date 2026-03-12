@@ -41,11 +41,13 @@ If you are self-hosting, you can safely ignore all environment variables. The ap
 
 The project integrates with [ConfigCat](https://configcat.com/) for remote feature toggling, global announcements, and maintenance mode. The application is designed to **work perfectly without it** (all features will be enabled and maintenance mode will be off by default).
 
-To use ConfigCat, create a `.env` file from the example:
+To use ConfigCat, create a `.env` file from the schema:
 
 ```bash
-cp .env.example .env
+cp .env.schema .env
 ```
+
+> **Note**: This project uses [varlock](https://varlock.dev) for environment variable management. If you prefer to manage `.env` manually, you can simply copy `.env.schema` to `.env` and fill in the values.
 
 And populate the following keys:
 - `NEXT_PUBLIC_CONFIGCAT_SDK_KEY_PROD`: SDK Key for production environment.
