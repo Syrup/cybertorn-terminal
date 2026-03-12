@@ -22,7 +22,8 @@
     "react-dom": "19.2.3",
     "react-markdown": "^10.1.0",
     "recharts": "^3.7.0",
-    "rehype-raw": "^7.0.0"
+    "rehype-raw": "^7.0.0",
+    "varlock": "^0.4.1"
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2",

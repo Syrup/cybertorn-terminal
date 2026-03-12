@@ -16,6 +16,7 @@
         "react-markdown": "^10.1.0",
         "recharts": "^3.7.0",
         "rehype-raw": "^7.0.0",
+        "varlock": "^0.4.1",
       },
       "devDependencies": {
         "@playwright/test": "^1.58.2",
@@ -1402,6 +1403,8 @@
     "util-deprecate": ["util-deprecate@1.0.2", "", {}, "sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw=="],
 
     "validate-npm-package-license": ["validate-npm-package-license@3.0.4", "", { "dependencies": { "spdx-correct": "^3.0.0", "spdx-expression-parse": "^3.0.0" } }, "sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew=="],
+
+    "varlock": ["varlock@0.4.1", "", { "bin": { "varlock": "bin/cli.js" } }, "sha512-JfgHSULxflbKigHf9ZgF8OWwgD2y0dsEYxoxVStxqKakSIihlSJgL/CGNX8lz8s7+kWdQ0KyB++ujskMiJVQXA=="],
 
     "vfile": ["vfile@6.0.3", "", { "dependencies": { "@types/unist": "^3.0.0", "vfile-message": "^4.0.0" } }, "sha512-KzIbH/9tXat2u30jf+smMwFCsno4wHVdNmzFyL+T/L3UGqqk6JKfVqOFOZEpZSHADH1k40ab6NUIXZq422ov3Q=="],
 
