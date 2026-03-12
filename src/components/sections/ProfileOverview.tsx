@@ -126,7 +126,16 @@ export function ProfileOverview() {
         <div className="grid grid-cols-2 gap-2">
            <StatBlock label="Age" value={`${profile.age} days`} />
            <StatBlock label="Rank" value={profile.rank} />
-           <StatBlock label="Job" value={profile.job.job} />
+           <StatBlock 
+             label="Job" 
+             value={
+               profile.job.company_name && profile.job.company_name !== "None"
+                 ? `${profile.job.position} at ${profile.job.company_name}`
+                 : profile.job.job !== "None"
+                   ? `${profile.job.position} in ${profile.job.job}`
+                   : "Unemployed"
+             } 
+           />
            <StatBlock label="Faction" value={profile.faction.faction_name} />
         </div>
 
