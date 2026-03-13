@@ -61,6 +61,7 @@ export function MoneyNetworth() {
           cayman_bank: getNumber(moneyRecord.cayman_bank),
           vault_amount: getNumber(moneyRecord.vault_amount),
           networth: getNumber(networthSource),
+          has_loan: isRecord(networthSource) && typeof networthSource.loan === 'number' && networthSource.loan < 0,
           city_bank: cityBank,
         };
       })()
@@ -114,6 +115,14 @@ export function MoneyNetworth() {
                   </div>
                 )}
               </div>
+            </div>
+          </div>
+        )}
+
+        {money.has_loan && (
+          <div className="pt-2 mt-2 border-t border-red-500/30">
+            <div className="px-3 py-2 bg-red-500/10 border border-red-500/30 text-[10px] sm:text-xs font-mono text-red-400 text-center uppercase font-bold tracking-widest">
+              WARNING: DUKE'S LOAN ACTIVE
             </div>
           </div>
         )}
