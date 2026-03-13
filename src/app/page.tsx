@@ -57,7 +57,7 @@ export default function Home() {
               <div className="flex-1 min-w-0 w-full">
                 <h1 className="text-lg sm:text-xl font-bold tracking-tighter uppercase font-mono truncate">CYBERTORN TERMINAL</h1>
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] sm:text-xs text-muted-foreground font-mono">
-                  <span className="whitespace-nowrap">COMMAND CENTER // ACCESS GRANTED</span>
+                  <span className="uppercase break-words line-clamp-2">A SLEEK, EASY-TO-USE DASHBOARD TO TRACK YOUR TORN CITY PROGRESS</span>
                   {lastUpdated && (
                     <span className="inline-flex items-center gap-2 text-xs sm:text-sm whitespace-nowrap">
                       <RefreshCw className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
