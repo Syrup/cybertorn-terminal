@@ -36,6 +36,7 @@ export type TornItemCatalogEntry = {
   name: string;
   type: string;
   sub_type?: string | null;
+  image?: string | null;
   details?: TornItemDetails | null;
 };
 

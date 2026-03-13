@@ -83,6 +83,7 @@ const parseCatalog = (payload: unknown): TornItemCatalogEntry[] => {
         name: typeof entry.name === "string" ? entry.name : "",
         type: typeof entry.type === "string" ? entry.type : "",
         sub_type: typeof entry.sub_type === "string" ? entry.sub_type : null,
+        image: typeof entry.image === "string" ? entry.image : null,
         details: isRecord(entry.details) ? (entry.details as TornItemDetails) : null,
       }));
   }
@@ -96,6 +97,7 @@ const parseCatalog = (payload: unknown): TornItemCatalogEntry[] => {
         name: typeof entry.name === "string" ? entry.name : "",
         type: typeof entry.type === "string" ? entry.type : "",
         sub_type: typeof entry.sub_type === "string" ? entry.sub_type : null,
+        image: typeof entry.image === "string" ? entry.image : null,
         details: isRecord(entry.details) ? (entry.details as TornItemDetails) : null,
       }));
   }
@@ -246,6 +248,11 @@ export function Equipment() {
 
   return (
     <Card title="Equipment" icon={Shield} className="h-full flex flex-col">
+      <div className="px-4 py-2 bg-yellow-500/10 border-b border-yellow-500/20">
+        <div className="text-[10px] font-mono text-yellow-500/80 leading-tight uppercase">
+          NOTE: LOW IMAGE QUALITY IS DUE TO ASSETS PROVIDED DIRECTLY BY THE TORN API.
+        </div>
+      </div>
       <div className="flex-1 overflow-y-auto max-h-[420px] p-3 space-y-3">
         <div className="text-[11px] font-mono text-muted-foreground uppercase">Weapons and Armor</div>
         {equipmentList.length === 0 ? (
@@ -264,7 +271,26 @@ export function Equipment() {
                     </span>
                     <span className="text-[10px] text-muted-foreground">{item.sub_type ?? item.type ?? "-"}</span>
                   </summary>
-                  <div className="px-3 pb-3 pt-2 space-y-2">
+                  <div className="px-3 pb-3 pt-2 space-y-3">
+                    {catalogById.get(item.id)?.id && (
+                      <div className="flex justify-center bg-black/20 p-2 border border-border/40">
+                        <img 
+                          src={`https://www.torn.com/images/items/${item.id}/full.png`}
+                          alt={item.name}
+                          className="h-40 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-transform duration-500 group-hover:scale-110"
+                          onError={(e) => {
+                            const target = e.currentTarget;
+                            if (target.src.endsWith('full.png')) {
+                              target.src = `https://www.torn.com/images/items/${item.id}/v2.png`;
+                            } else if (target.src.endsWith('v2.png')) {
+                              target.src = `https://www.torn.com/images/items/${item.id}/large.png`;
+                            } else {
+                              target.style.display = 'none';
+                            }
+                          }}
+                        />
+                      </div>
+                    )}
                     <div className="grid grid-cols-2 gap-2 text-[11px] font-mono">
                       <div className="flex justify-between border border-border/50 px-2 py-1">
                         <span className="text-muted-foreground">DMG</span>
@@ -305,7 +331,17 @@ export function Equipment() {
                   </span>
                   <span className="text-[10px] text-muted-foreground">{item.type ?? "-"}</span>
                 </summary>
-                <div className="px-3 pb-3 pt-2">
+                <div className="px-3 pb-3 pt-2 space-y-3">
+                  {catalogById.get(item.id)?.id && (
+                    <div className="flex justify-center bg-black/20 p-2 border border-border/40">
+                      <img 
+                        src={`https://www.torn.com/images/items/${item.id}/large.png`}
+                        alt={item.name}
+                        className="h-24 w-auto object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]"
+                        onError={(e) => (e.currentTarget.style.display = 'none')}
+                      />
+                    </div>
+                  )}
                   <div className="grid grid-cols-2 gap-2 text-[11px] font-mono">
                     <div className="flex justify-between border border-border/50 px-2 py-1">
                       <span className="text-muted-foreground">ARM</span>
