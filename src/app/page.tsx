@@ -76,7 +76,7 @@ export default function Home() {
                       href="https://github.com/Syrup/torn-dashboard"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center h-9 w-9 border border-border bg-card text-muted-foreground hover:text-foreground hover:border-primary transition-colors"
+                      className="h-10 w-10 sm:h-9 sm:w-9 inline-flex items-center justify-center border border-border bg-card text-muted-foreground hover:text-foreground hover:border-primary transition-colors"
                       title="GitHub Repository"
                     >
                       <Github className="h-4 w-4" />
