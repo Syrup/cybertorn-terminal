@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/Syrup/cybertorn-terminal/compare/v1.1.2...v1.2.0) (2026-03-13)
+
+
+### Features
+
+* add visibility toggle for API key input ([01016fd](https://github.com/Syrup/cybertorn-terminal/commit/01016fd283b656d1559e7edf67afd481381aa7ab))
+* added item market section which lists up to 10 items. By default, shows 10 cheapest items sorted by market value. Includes a search feature. ([1077bd1](https://github.com/Syrup/cybertorn-terminal/commit/1077bd16d103f62bbaafe62e63c9da9b909a3d0c))
+* animate refresh icon with play-state to preserve rotation angle ([c4b36dd](https://github.com/Syrup/cybertorn-terminal/commit/c4b36dd91db85a077b440e7c14359443d1d8dcd5))
+* **equipment:** add low-resolution image notice and item visuals ([e558cc2](https://github.com/Syrup/cybertorn-terminal/commit/e558cc2e79da72764769c4a3432562c5c91fef64))
+* **finance:** add warning banner for active loan shark accounts ([30f4349](https://github.com/Syrup/cybertorn-terminal/commit/30f434920de1ee8f4a089af2dc13595f343a1755))
+* **profile:** improve job display with position and company details ([78bb59a](https://github.com/Syrup/cybertorn-terminal/commit/78bb59a4ce2e8018c42724a18a1dcaaf0815f24f))
+
+
+### Bug Fixes
+
+* **equipment:** hide ammo section for melee and armor items ([fb8f9dc](https://github.com/Syrup/cybertorn-terminal/commit/fb8f9dcf7df95123366f3ffb8bcaee7da5ea204d))
+
 ### [1.1.2](https://github.com/Syrup/cybertorn-terminal/compare/v1.1.1...v1.1.2) (2026-03-11)
 
 
