@@ -102,3 +102,25 @@ This file contains crucial instructions, commands, and conventions for any auton
     *   Bump **MINOR** for new features.
     *   Bump **MAJOR** for breaking changes or complete redesigns.
 *   **Automation:** If a `package.json` exists, versioning should be handled there. This project uses `standard-version`. Run `bun run release` to automatically bump version, generate changelog, and create a git tag based on conventional commits.
+
+## 6. Design Context
+
+### 6.1. Users
+Torn City players who need a **Passive Status Dashboard**. They use the terminal to monitor long-term progress, financial status, and operational readiness (cooldowns, energy, nerve) in the background while playing or during daily checks.
+
+### 6.2. Brand Personality
+**Cyberpunk Terminal** meets **Modern Minimalist**. The brand is defined by **Cold Efficiency**. It avoids unnecessary visual flair in favor of a "high-tech, low-life" utilitarian vibe that feels like a secure operative's workstation.
+
+### 6.3. Aesthetic Direction
+*   **Visual Tone**: High-density, sharp-edged (0px radius), and monochromatic.
+*   **Typography**: `Space Grotesk` for UI labels; `JetBrains Mono` for data values, numbers, and card headers.
+*   **Theme**: Optimized for both Light and Dark modes. Dark mode is the "native" cyberpunk experience, while Light mode provides a "blueprint/document" utility feel.
+*   **References**: Command-line interfaces, medical monitors, architectural blueprints.
+*   **Anti-references**: Rounded corners, soft shadows, large padding, "bubbly" or playful UI.
+
+### 6.4. Design Principles
+1.  **Data-First Utility**: Information density is a core feature. Prioritize fitting more relevant data over whitespace, but maintain alignment for scanning.
+2.  **Brutalist Precision**: Use sharp corners (`rounded-none`), thin borders, and monochromatic fills. Avoid gradients or decorative shadows.
+3.  **Semantic Typography**: Use tabular numbers for all numeric data to ensure vertical alignment. Mono fonts indicate "live data" or "system output."
+4.  **Functional Color**: Color should be reserved for status (e.g., green for full energy, red for travel/cooldown). Neutral tones should dominate the UI.
+5.  **Modular Grid**: Components should be built as self-contained "blocks" or "cards" that can be rearranged or scaled within a responsive grid.
