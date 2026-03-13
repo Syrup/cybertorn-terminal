@@ -191,8 +191,15 @@ export function Equipment() {
   const formatQuality = (value?: number | null) =>
     value === null || value === undefined ? "-" : `${value.toFixed(2)}%`;
 
-  const renderAmmoMatch = (ammo: EquipmentAmmo | null | undefined) => {
-    if (!ammo) return <span className="text-xs text-muted-foreground font-mono">NO AMMO</span>;
+  const renderAmmoMatch = (ammo: EquipmentAmmo | null | undefined, item: EquipmentItem | ClothingItem) => {
+    const itemType = item.type?.toLowerCase();
+    const itemSubType = (item as EquipmentItem).sub_type?.toLowerCase();
+    
+    const isMelee = itemType === "melee" || itemSubType === "melee";
+    const isArmor = itemType === "armor" || itemSubType === "armor";
+    
+    if (!ammo || isMelee || isArmor) return null;
+    
     const userAmmo = ammoLookup.get(ammo.id);
     if (!userAmmo) {
       return (
@@ -309,7 +316,7 @@ export function Equipment() {
                         <span>{formatQuality(stats?.quality)}</span>
                       </div>
                     </div>
-                    {renderAmmoMatch(getAmmoForItem(item as EquipmentItemLike, getDetails(item) as TornItemDetails | null))}
+                    {renderAmmoMatch(getAmmoForItem(item as EquipmentItemLike, getDetails(item) as TornItemDetails | null), item)}
                   </div>
                 </details>
               );
