@@ -132,6 +132,11 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1rem;
 }
 
-.tabular-nums {
-  font-variant-numeric: tabular-nums;
+@keyframes spin-continuous {
+  to { transform: rotate(360deg); }
+}
+
+.animate-refresh-spin {
+  animation: spin-continuous 1s linear infinite;
+  animation-play-state: var(--play-state, paused);
 }

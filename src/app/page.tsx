@@ -7,6 +7,7 @@ import { ApiKeyInput } from "@/components/ApiKeyInput";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { ProfileOverview } from "@/components/sections/ProfileOverview";
 import { BattleStats } from "@/components/sections/BattleStats";
+import { cn } from "@/lib/utils";
 import { MoneyNetworth } from "@/components/sections/MoneyNetworth";
 import { CooldownsTravel } from "@/components/sections/CooldownsTravel";
 import { Equipment } from "@/components/sections/Equipment";
@@ -60,7 +61,10 @@ export default function Home() {
                   <span className="uppercase break-words line-clamp-2">A SLEEK, EASY-TO-USE DASHBOARD TO TRACK YOUR TORN CITY PROGRESS</span>
                   {lastUpdated && (
                     <span className="inline-flex items-center gap-2 text-xs sm:text-sm whitespace-nowrap">
-                      <RefreshCw className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
+                      <RefreshCw 
+                        className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0 animate-refresh-spin" 
+                        style={{ '--play-state': isLoading ? 'running' : 'paused' } as React.CSSProperties}
+                      />
                       {lastUpdated.toLocaleTimeString()}
                     </span>
                   )}
