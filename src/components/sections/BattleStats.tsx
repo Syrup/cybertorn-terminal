@@ -167,12 +167,12 @@ export function BattleStats() {
         </button>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-4">
         {activeTab === "stats" ? (
           <>
             <div className="flex justify-between items-end mb-4 border-b border-border pb-2">
-               <span className="text-sm font-mono text-muted-foreground uppercase">Total Stats</span>
-               <span className="text-xl font-bold tabular-nums">{stats.total.toLocaleString()}</span>
+               <span className="text-xs sm:text-sm font-mono text-muted-foreground uppercase">Total Stats</span>
+               <span className="text-lg sm:text-xl font-bold tabular-nums">{stats.total.toLocaleString()}</span>
             </div>
 
             {/* Radar Chart */}

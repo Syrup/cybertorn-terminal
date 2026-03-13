@@ -161,12 +161,12 @@ export function StocksProperties() {
             <tbody>
               {stockList.length === 0 ? (
                 <tr>
-                  <td colSpan={3} className="p-4 text-center text-muted-foreground">NO STOCKS</td>
+                  <td colSpan={3} className="p-3 sm:p-4 text-center text-muted-foreground">NO STOCKS</td>
                 </tr>
               ) : (
                 stockList.map((stock, i) => (
                   <tr key={i} className="border-b border-border/50 last:border-0 hover:bg-muted/20">
-                    <td className="p-2 font-medium">{stock.stock_id || "UNK"}</td>
+                    <td className="p-2 font-medium">ID {stock.stock_id || "UNK"}</td>
                     <td className="p-2 text-right tabular-nums">{stock.total_shares?.toLocaleString()}</td>
                     <td className="p-2 text-right tabular-nums">
                       {stock.dividend ? (
@@ -181,9 +181,9 @@ export function StocksProperties() {
             </tbody>
           </table>
         ) : (
-          <div className="space-y-2 p-2">
+          <div className="space-y-2 p-2 sm:p-3">
             {propertyList.length === 0 ? (
-              <div className="p-4 text-center text-muted-foreground text-xs font-mono">NO PROPERTIES</div>
+              <div className="p-3 sm:p-4 text-center text-muted-foreground text-xs font-mono">NO PROPERTIES</div>
             ) : (
               propertyList.map(renderProperty)
             )}

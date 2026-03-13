@@ -45,10 +45,18 @@ export function Sidebar() {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-4 right-4 z-50 p-3 bg-primary text-primary-foreground rounded-full shadow-lg md:hidden"
+        className="fixed bottom-4 right-4 z-50 p-3 bg-primary text-primary-foreground rounded-none shadow-lg md:hidden border border-primary-foreground/20"
       >
         {isOpen ? <X /> : <Menu />}
       </button>
+
+      {/* Backdrop for mobile */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-background/80 backdrop-blur-sm z-30 md:hidden"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
 
       <aside
         className={cn(
@@ -80,7 +88,7 @@ export function Sidebar() {
                     <a
                       href={link.href}
                       onClick={() => setIsOpen(false)}
-                      className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors rounded-sm group"
+                      className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors rounded-none group"
                     >
                       <Icon className="h-4 w-4 group-hover:text-foreground transition-colors" />
                       <span className="uppercase tracking-wide text-xs font-mono">{link.label}</span>

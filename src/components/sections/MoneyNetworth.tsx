@@ -83,10 +83,10 @@ export function MoneyNetworth() {
 
   return (
     <Card title="Finance" icon={DollarSign}>
-      <div className="p-4 space-y-4">
-        <div className="flex justify-between items-end mb-2 border-b border-border pb-2">
-           <span className="text-sm font-mono text-muted-foreground uppercase">Networth</span>
-           <span className="text-xl font-bold tabular-nums text-green-500">{formatMoney(money.networth)}</span>
+      <div className="p-3 sm:p-4 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end mb-2 border-b border-border pb-2">
+           <span className="text-xs sm:text-sm font-mono text-muted-foreground uppercase">Networth</span>
+           <span className="text-lg sm:text-xl font-bold tabular-nums text-green-500">{formatMoney(money.networth)}</span>
         </div>
 
         <div className="grid grid-cols-2 gap-2">

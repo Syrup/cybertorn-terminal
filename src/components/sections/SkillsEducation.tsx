@@ -112,21 +112,21 @@ export function SkillsEducation() {
 
   return (
     <Card title="Education & Work" icon={GraduationCap} className="h-full">
-      <div className="p-4 space-y-4">
+      <div className="p-3 sm:p-4 space-y-4">
         {education_current !== 0 ? (
-           <div className="bg-muted/30 p-3 border border-border">
-             <div className="text-xs text-muted-foreground font-mono uppercase mb-1">Current Course</div>
-             <div className="font-bold text-sm mb-2">
+           <div className="bg-muted/30 p-2 sm:p-3 border border-border">
+             <div className="text-[10px] sm:text-xs text-muted-foreground font-mono uppercase mb-1">Current Course</div>
+             <div className="font-bold text-xs sm:text-sm mb-2">
                {namesLoading ? (
                  <span className="animate-pulse">LOADING COURSE NAME...</span>
                ) : (
                  eduNames[education_current]?.name || `Course #${education_current}`
                )}
              </div>
-            <div className="text-xs font-mono tabular-nums text-muted-foreground flex items-center gap-2 flex-wrap">
+            <div className="text-[10px] sm:text-xs font-mono tabular-nums text-muted-foreground flex items-center gap-x-2 gap-y-1 flex-wrap">
               <span>Time Left: {formatDuration(timeLeft)}</span>
               {timeLeft > 0 && (
-                <span className="text-[10px] opacity-70">
+                <span className="text-[10px] opacity-70 whitespace-nowrap">
                   (est. {formatEstimate(timeLeft)})
                 </span>
               )}
@@ -140,8 +140,8 @@ export function SkillsEducation() {
 
         {workstats && (
           <div>
-            <h4 className="text-xs font-bold uppercase text-muted-foreground mb-2 border-b border-border pb-1">Work Stats</h4>
-            <div className="grid grid-cols-3 gap-2">
+            <h4 className="text-[10px] sm:text-xs font-bold uppercase text-muted-foreground mb-2 border-b border-border pb-1">Work Stats</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
               <StatBlock label="MAN" value={workstats.manual_labor.toLocaleString()} />
               <StatBlock label="INT" value={workstats.intelligence.toLocaleString()} />
               <StatBlock label="END" value={workstats.endurance.toLocaleString()} />

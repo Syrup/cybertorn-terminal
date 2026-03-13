@@ -105,38 +105,42 @@ export function ProfileOverview() {
   return (
     <Card title="Profile Overview" icon={User} className="h-full">
       <div className="p-4 space-y-4">
-        <div className="flex items-start justify-between">
-          <div>
-            <h2 className="text-xl font-bold tracking-tight">{profile.name} <span className="text-muted-foreground text-sm font-mono">[{profile.player_id}]</span></h2>
-            <div className="flex items-center gap-2 mt-1">
-              <span className={`text-xs font-mono uppercase font-bold ${statusColor}`}>
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0">
+            <h2 className="text-lg sm:text-xl font-bold tracking-tight truncate">{profile.name}</h2>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-x-2 gap-y-0.5 mt-1">
+              <span className={`text-[10px] sm:text-xs font-mono uppercase font-bold ${statusColor} whitespace-nowrap`}>
                 {profile.status.state}
               </span>
-              <span className="text-xs text-muted-foreground font-mono">
-                 • {renderStatusDetails(profile.status.details)}
+              <span className="text-[10px] sm:text-xs text-muted-foreground font-mono truncate">
+                 <span className="hidden sm:inline">• </span>{renderStatusDetails(profile.status.details)}
               </span>
             </div>
           </div>
-          <div className="text-right">
-            <div className="text-sm font-mono text-muted-foreground">LEVEL</div>
-            <div className="text-2xl font-bold leading-none">{profile.level}</div>
+          <div className="text-right shrink-0">
+            <div className="text-[10px] sm:text-sm font-mono text-muted-foreground">LEVEL</div>
+            <div className="text-xl sm:text-2xl font-bold leading-none">{profile.level}</div>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
            <StatBlock label="Age" value={`${profile.age} days`} />
            <StatBlock label="Rank" value={profile.rank} />
-           <StatBlock 
-             label="Job" 
-             value={
-               profile.job.company_name && profile.job.company_name !== "None"
-                 ? `${profile.job.position} at ${profile.job.company_name}`
-                 : profile.job.job !== "None"
-                   ? `${profile.job.position} in ${profile.job.job}`
-                   : "Unemployed"
-             } 
-           />
-           <StatBlock label="Faction" value={profile.faction.faction_name} />
+           <div className="sm:col-span-2">
+             <StatBlock 
+               label="Job" 
+               value={
+                 profile.job.company_name && profile.job.company_name !== "None"
+                   ? `${profile.job.position} at ${profile.job.company_name}`
+                   : profile.job.job !== "None"
+                     ? `${profile.job.position} in ${profile.job.job}`
+                     : "Unemployed"
+               } 
+             />
+           </div>
+           <div className="sm:col-span-2">
+             <StatBlock label="Faction" value={profile.faction.faction_name} />
+           </div>
         </div>
 
         {bars && (

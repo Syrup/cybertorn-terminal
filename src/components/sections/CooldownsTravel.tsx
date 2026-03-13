@@ -20,8 +20,8 @@ function CooldownItem({ label, seconds, color, formatDuration, secondsLeft }: Co
 
   return (
     <div className="flex justify-between items-center py-2 border-b border-border last:border-0">
-      <span className="text-sm font-mono uppercase text-muted-foreground">{label}</span>
-      <span className={cn("font-mono font-bold tabular-nums", remaining > 0 ? color || "text-foreground" : "text-muted-foreground/50")}>
+      <span className="text-xs sm:text-sm font-mono uppercase text-muted-foreground">{label}</span>
+      <span className={cn("text-xs sm:text-base font-mono font-bold tabular-nums", remaining > 0 ? color || "text-foreground" : "text-muted-foreground/50")}>
         {remaining > 0 ? formatDuration(remaining) : "--"}
       </span>
     </div>
@@ -76,7 +76,7 @@ export function CooldownsTravel() {
 
   return (
     <Card title="Timers & Travel" icon={Clock} className="h-full">
-      <div className="p-4">
+      <div className="p-3 sm:p-4">
         <div className="mb-4">
           <CooldownItem label="Drug" seconds={cooldowns.drug} color="text-red-500" formatDuration={formatDuration} secondsLeft={secondsLeft} />
           <CooldownItem label="Booster" seconds={cooldowns.booster} color="text-blue-500" formatDuration={formatDuration} secondsLeft={secondsLeft} />

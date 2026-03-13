@@ -56,8 +56,8 @@ export function TornGlobal() {
 
   return (
     <Card title="Torn Global Stats" icon={Globe} className="h-full">
-      <div className="p-4">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 max-h-[300px] overflow-y-auto pr-1">
+      <div className="p-3 sm:p-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 max-h-[300px] overflow-y-auto pr-1">
           {entries.slice(0, 18).map(([key, value]) => (
             <StatBlock
               key={key}

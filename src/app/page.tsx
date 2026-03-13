@@ -52,24 +52,24 @@ export default function Home() {
       ) : (
         <div className="flex flex-1">
           <Sidebar />
-          <main className="flex-1 min-w-0 p-3 md:p-4 lg:p-6 space-y-4 overflow-x-hidden">
-            <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-3 border-b border-border">
-              <div className="flex-1 min-w-0">
-                <h1 className="text-lg font-bold tracking-tighter uppercase font-mono">CYBERTORN TERMINAL</h1>
-                <div className="flex items-center gap-3 text-xs text-muted-foreground font-mono">
-                  <span>COMMAND CENTER // ACCESS GRANTED</span>
+          <main className="flex-1 min-w-0 p-2 sm:p-4 lg:p-6 space-y-4 overflow-x-hidden">
+            <header className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4 pb-3 border-b border-border">
+              <div className="flex-1 min-w-0 w-full">
+                <h1 className="text-lg sm:text-xl font-bold tracking-tighter uppercase font-mono truncate">CYBERTORN TERMINAL</h1>
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] sm:text-xs text-muted-foreground font-mono">
+                  <span className="whitespace-nowrap">COMMAND CENTER // ACCESS GRANTED</span>
                   {lastUpdated && (
-                    <span className="inline-flex items-center gap-2 text-sm">
-                      <RefreshCw className="h-4 w-4 flex-shrink-0" />
+                    <span className="inline-flex items-center gap-2 text-xs sm:text-sm whitespace-nowrap">
+                      <RefreshCw className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
                       {lastUpdated.toLocaleTimeString()}
                     </span>
                   )}
-                  {isLoading && <span className="animate-pulse text-yellow-500">UPDATING...</span>}
+                  {isLoading && <span className="animate-pulse text-yellow-500 whitespace-nowrap">UPDATING...</span>}
                 </div>
               </div>
-              <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full xl:w-auto">
                 <ApiKeyInput />
-                <div className="flex items-center gap-2 ml-auto sm:ml-0">
+                <div className="flex items-center gap-2 self-end sm:self-auto">
                   {showThemeToggle && <ThemeToggle />}
                   {showGithubButton && (
                     <a

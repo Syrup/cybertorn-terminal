@@ -19,7 +19,7 @@ export function ApiKeyInput() {
   return (
     <div className="flex items-center gap-2">
       <div className="relative flex-1 min-w-0 sm:flex-none">
-        <Key className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+        <Key className="absolute left-2.5 top-3 sm:top-2.5 h-4 w-4 text-muted-foreground" />
         <input
           type="password"
           value={inputKey ?? apiKey}
@@ -30,14 +30,14 @@ export function ApiKeyInput() {
             }
           }}
           placeholder="API KEY"
-          className="h-9 w-full sm:w-48 bg-muted border border-border pl-9 pr-3 text-sm font-mono focus:outline-none focus:ring-1 focus:ring-ring placeholder:text-muted-foreground/50 uppercase"
+          className="h-10 sm:h-9 w-full sm:w-48 bg-muted border border-border pl-9 pr-3 text-sm font-mono focus:outline-none focus:ring-1 focus:ring-ring placeholder:text-muted-foreground/50 uppercase"
         />
       </div>
       <button
         type="button"
         onClick={handleSave}
         disabled={isLoading || !(inputKey ?? apiKey)}
-        className="h-9 px-3 bg-primary text-primary-foreground text-xs font-bold uppercase hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transition-colors flex-shrink-0"
+        className="h-10 sm:h-9 px-3 sm:px-4 bg-primary text-primary-foreground text-[10px] sm:text-xs font-bold uppercase hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transition-colors flex-shrink-0 border border-primary"
       >
         {isLoading ? (
           <span className="animate-pulse">LOADING...</span>

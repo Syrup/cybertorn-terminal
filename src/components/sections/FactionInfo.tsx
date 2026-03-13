@@ -74,10 +74,10 @@ export function FactionInfo() {
 
   return (
     <Card title="Faction Status" icon={Users}>
-      <div className="p-4 space-y-4">
-        <div className="flex justify-between items-center mb-2">
-          <h3 className="text-lg font-bold font-mono uppercase">{faction.name}</h3>
-          <span className="text-xs text-muted-foreground font-mono">ID: {faction.ID}</span>
+      <div className="p-3 sm:p-4 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 mb-2">
+          <h3 className="text-base sm:text-lg font-bold font-mono uppercase truncate">{faction.name}</h3>
+          <span className="text-[10px] sm:text-xs text-muted-foreground font-mono">ID: {faction.ID}</span>
         </div>
 
         <div className="grid grid-cols-2 gap-2">
