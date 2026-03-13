@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import { useTorn } from "@/lib/torn-context";
-import { Key, Play } from "lucide-react";
+import { Key, Play, Eye, EyeOff } from "lucide-react";
 
 export function ApiKeyInput() {
   const { apiKey, setApiKey, loadDashboard, isLoading } = useTorn();
   const [inputKey, setInputKey] = useState<string | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   const handleSave = () => {
     const nextKey = (inputKey ?? apiKey).trim();
@@ -21,7 +22,7 @@ export function ApiKeyInput() {
       <div className="relative flex-1 min-w-0 sm:flex-none">
         <Key className="absolute left-2.5 top-3 sm:top-2.5 h-4 w-4 text-muted-foreground" />
         <input
-          type="password"
+          type={isVisible ? "text" : "password"}
           value={inputKey ?? apiKey}
           onChange={(e) => setInputKey(e.target.value)}
           onKeyDown={(e) => {
@@ -30,8 +31,16 @@ export function ApiKeyInput() {
             }
           }}
           placeholder="API KEY"
-          className="h-10 sm:h-9 w-full sm:w-48 bg-muted border border-border pl-9 pr-3 text-sm font-mono focus:outline-none focus:ring-1 focus:ring-ring placeholder:text-muted-foreground/50 uppercase"
+          className="h-10 sm:h-9 w-full sm:w-48 bg-muted border border-border pl-9 pr-9 text-sm font-mono focus:outline-none focus:ring-1 focus:ring-ring placeholder:text-muted-foreground/50"
         />
+        <button
+          type="button"
+          onClick={() => setIsVisible(!isVisible)}
+          className="absolute right-2.5 top-3 sm:top-2.5 h-4 w-4 text-muted-foreground hover:text-foreground transition-colors"
+          title={isVisible ? "Hide API Key" : "Show API Key"}
+        >
+          {isVisible ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+        </button>
       </div>
       <button
         type="button"
